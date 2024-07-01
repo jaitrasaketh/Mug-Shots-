@@ -1,0 +1,23 @@
+/* src/Intro.css */
+.intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.intro-container.fade-in {
+  opacity: 0;
+}
+
+.intro-container.fade-out {
+  opacity: 0;
+}
+
+.intro-logo {
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -1,0 +1,116 @@
+/* src/Newbill.css */
+
+.newbill-container {
+  background-color: #019DB2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.newbill-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  margin: auto; /* Center horizontally */
+  padding-top: 50px; /* Adjust as per your header height */
+  position: relative; /* Enable positioning */
+}
+
+.search-bar {
+  width: calc(100% - 120px); /* Adjust to leave space for the button */
+  max-width: 600px; /* Limit width for larger screens */
+  margin-bottom: 20px;
+  margin-top: -190px; /* Move search bar 190px up */
+  display: flex;
+  align-items: center; /* Center items horizontally */
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.search-button {
+  background-color: #17375E;
+  color: #FFFFFF;
+  padding: 12px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px; /* Space between search input and button */
+}
+
+.add-button {
+  background-color: #007BFF; /* Blue color for add button */
+  color: #FFFFFF;
+  padding: 12px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px; /* Space between search button and add button */
+}
+
+.items-list {
+  width: calc(100% - 120px); /* Adjust to leave space for the button */
+  max-width: 600px; /* Limit width for larger screens */
+}
+
+.searched-items {
+  list-style: none;
+  padding: 0;
+}
+
+.searched-items li {
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.bill-table {
+  width: 100%;
+  max-width: 800px; /* Limit width for larger screens */
+  margin-top: 20px;
+}
+
+.bill-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bill-table th {
+  background-color: #17375E;
+  color: #FFFFFF;
+  padding: 12px;
+  text-align: left;
+}
+
+.bill-table th,
+.bill-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.create-bill-button {
+  background-color: #17375E;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  position: absolute;
+  bottom: 60px; /* Adjust as needed */
+  right: 110px; /* Adjusted to be 100px to the right */
+}
+
+.create-bill-button:hover {
+  background-color: #145099;
+}

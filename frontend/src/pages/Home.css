@@ -1,0 +1,83 @@
+/* src/Home.css */
+.home-container {
+  background-color: #019DB2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.main-menu {
+  width: 30%;
+  background-color: #D9D9D9;
+  padding: 20px;
+}
+
+.main-menu h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.main-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.main-menu li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.table-section {
+  width: 70%;
+  padding: 20px;
+  position: relative;
+}
+.heading{
+  font-size: 24px;
+}
+
+
+
+
+table {
+  
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #17375E;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+tr:nth-child(even) td {
+  background-color: #F2F2F2;
+}
+
+.new-bill-button {
+  background-color: #17375E;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 220px;
+  right: 20px;
+  font-size: 1em;
+}
+
+.new-bill-button:hover {
+  background-color: #145099;
+}

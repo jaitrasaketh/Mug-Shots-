@@ -1,0 +1,14 @@
+/* src/Header.css */
+.navbar {
+  background-color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the left */
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo img {
+  height: 55px;
+}

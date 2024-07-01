@@ -1,0 +1,21 @@
+/* src/Footer.css */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.footer-content {
+  width: 100%;
+}
+
+.footer-line {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+}
