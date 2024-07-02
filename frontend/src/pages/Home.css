@@ -73,7 +73,7 @@ tr:nth-child(even) td {
   border: none;
   cursor: pointer;
   position: absolute;
-  bottom: 220px;
+  bottom: 150px;
   right: 20px;
   font-size: 1em;
 }

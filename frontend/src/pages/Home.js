@@ -14,20 +14,19 @@ const Home = () => {
         <div className="main-menu">
           <h2>ITEMS</h2>
           <ul>
-          <li><Link to="/add">Add Item</Link></li>
-          <li>Delete Items</li>
-          <li><Link to="/alter">Alter Item</Link></li>
+            <li><Link to="/add">Add Item</Link></li>
+            <li><Link to="/delete">Items Database</Link></li> {/* Updated link to Delete.js */}
             
           </ul>
         </div>
         
         <div className="table-section">
-        <div className='heading'> Recent Transactions</div>
+          <div className='heading'> Recent Transactions</div>
           <table>
             <thead>
               <tr>
                 <th>Date</th>
-                <th>Transaction from Account name</th>
+                <th>Account No.</th>
                 <th>View Bill</th>
               </tr>
             </thead>
@@ -60,7 +59,7 @@ const Home = () => {
             </tbody>
           </table>
           <li><Link to="/newbill" className="new-bill-button">New Bill</Link></li> {/* Link to Newbill page */}
-          </div>
+        </div>
       </div>
       <Footer />
     </div>
