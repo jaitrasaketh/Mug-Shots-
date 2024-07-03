@@ -53,7 +53,7 @@ The project is structured into frontend and backend components, with the main fe
 
 This project is licensed under the MIT License. See the LICENSE.md file for details.
 
-##Contributors
+## Contributors
 
 1. Sri Jaitra Saketh Goparaju - f20220183@hyderabad.bits-pilani.ac.in
 
