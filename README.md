@@ -42,4 +42,22 @@ The project is structured into frontend and backend components, with the main fe
 1. Clone the repository:
    ```bash
    git clone https://github.com/jaitrasaketh/Mug-Shots-.git
+2. Install dependencies:
+   ```bash
+   npm install
+3. Start the development server:
+   ```bash
+   npm start
+
+ ## License
+
+This project is licensed under the MIT License. See the LICENSE.md file for details.
+
+##Contributors
+
+1. Sri Jaitra Saketh Goparaju - f20220183@hyderabad.bits-pilani.ac.in
+
+
+  
+   
 
