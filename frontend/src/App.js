@@ -7,6 +7,8 @@ import Add from './pages/Add';
 import Alter from './pages/Alter';
 import Newbill from './pages/Newbill';
 import Delete from './pages/Delete'; // Import Delete page
+import Invoice from './pages/Invoice';
+
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/alter" element={<Alter />} />
         <Route path="/newbill" element={<Newbill />} />
         <Route path="/delete" element={<Delete />} /> {/* Add route for Delete page */}
+        <Route path="/invoice/:invoiceId" component={Invoice} />
+
       </Routes>
     </Router>
   );

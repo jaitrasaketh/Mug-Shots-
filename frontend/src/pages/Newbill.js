@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 import { db } from '../firebaseConfig';
-import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import './Newbill.css';
 
 const Newbill = () => {
@@ -14,32 +14,37 @@ const Newbill = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      if (searchTerm) {
-        try {
-          const itemsRef = collection(db, 'items');
-          const q = query(itemsRef, where('itemName', '>=', searchTerm), where('itemName', '<=', searchTerm + '\uf8ff'));
-          const querySnapshot = await getDocs(q);
-
-          const filteredItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          console.log('Fetched items:', filteredItems); // Debugging line
-          setSearchedItems(filteredItems);
-        } catch (error) {
-          console.error('Error fetching items:', error);
-        }
-      } else {
-        setSearchedItems([]);
+      try {
+        const itemsRef = collection(db, 'items');
+        const querySnapshot = await getDocs(itemsRef);
+        const allItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSearchedItems(allItems);
+      } catch (error) {
+        console.error('Error fetching items:', error);
       }
     };
 
     fetchItems();
-  }, [searchTerm]);
+  }, []);
 
   const handleAccountNameChange = (event) => {
     setAccountName(event.target.value);
   };
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value.toLowerCase());
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchFocus = async () => {
+    // Fetch items when the search bar is focused
+    try {
+      const itemsRef = collection(db, 'items');
+      const querySnapshot = await getDocs(itemsRef);
+      const allItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setSearchedItems(allItems);
+    } catch (error) {
+      console.error('Error fetching items:', error);
+    }
   };
 
   const handleAddItem = (item) => {
@@ -77,13 +82,13 @@ const Newbill = () => {
       alert('Add items to the bill');
       return;
     }
-
+  
     const newWindow = window.open('', 'NewWindow', 'width=500,height=500');
     const timestamp = new Date().toLocaleString();
-    const totalCost = items.reduce((total, item) => total + item.price * quantity[item.itemName], 0);
+    const totalCost = items.reduce((total, item) => total + parseFloat(item.price) * quantity[item.itemName], 0);
     const gst = totalCost * 0.08;
     const finalTotal = totalCost + gst;
-
+  
     const billContent = `
       <html>
         <head>
@@ -129,8 +134,8 @@ const Newbill = () => {
                 <tr>
                   <td>${item.itemName}</td>
                   <td>${quantity[item.itemName]}</td>
-                  <td>$${item.price.toFixed(2)}</td>
-                  <td>$${(item.price * quantity[item.itemName]).toFixed(2)}</td>
+                  <td>$${parseFloat(item.price).toFixed(2)}</td>
+                  <td>$${(parseFloat(item.price) * quantity[item.itemName]).toFixed(2)}</td>
                 </tr>
               `).join('')}
               <tr>
@@ -150,30 +155,48 @@ const Newbill = () => {
         </body>
       </html>
     `;
-
+  
     newWindow.document.write(billContent);
     newWindow.document.close();
-
+  
     try {
-      await addDoc(collection(db, 'invoices'), {
+      const docRef = await addDoc(collection(db, 'invoices'), {
         accountName,
         timestamp,
         items: items.map(item => ({
           itemName: item.itemName,
           quantity: quantity[item.itemName],
-          price: item.price,
-          total: item.price * quantity[item.itemName],
+          price: parseFloat(item.price),
+          total: parseFloat(item.price) * quantity[item.itemName],
         })),
         subtotal: totalCost,
         gst,
         total: finalTotal
       });
+      
+      // Capture the URL of the new invoice window
+      const billUrl = newWindow.location.href;
+  
+      // Update recent transactions in localStorage
+      const newTransaction = {
+        date: timestamp,
+        accountName,
+        billLink: billUrl
+      };
+      const recentTransactions = JSON.parse(localStorage.getItem('recentTransactions')) || [];
+      recentTransactions.unshift(newTransaction);
+      if (recentTransactions.length > 5) {
+        recentTransactions.pop();
+      }
+      localStorage.setItem('recentTransactions', JSON.stringify(recentTransactions));
+      
       alert('Invoice created and saved successfully!');
     } catch (error) {
       console.error('Error saving invoice:', error);
       alert(`Error saving invoice: ${error.message}`);
     }
   };
+  
 
   return (
     <div className="newbill-container">
@@ -193,6 +216,7 @@ const Newbill = () => {
             placeholder="Search items..."
             value={searchTerm}
             onChange={handleSearchChange}
+            onFocus={handleSearchFocus}
           />
           {searchedItems.length > 0 && (
             <ul className="searched-items">
