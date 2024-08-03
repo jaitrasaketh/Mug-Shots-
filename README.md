@@ -49,7 +49,7 @@ The project is structured into frontend and backend components, with the main fe
    ```bash
    npm start
 
- ## License
+## License
 
 This project is licensed under the MIT License. See the LICENSE.md file for details.
 
